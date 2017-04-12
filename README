@@ -1,0 +1,62 @@
+boot-edit.py
+------------
+
+This tool can be used for following purpose:
+
+1) Read and write CMDLINE from boot image
+2) Replace Linux kernel image from boot image
+3) Replace Ramdisk from boot image
+4) Split boot image into kernel image and ramdisk image
+
+
+Usage:
+python boot-edit.py <options> -b <boot image>
+
+options:
+	-b <boot-image>		Mandatory argument. Required to provide
+				path to boot image.
+
+	-s			Optional argument. Split boot image into kernel
+				and ramdisk images
+
+	-k <kernel-image>	Optional argument. Use this to generate boot
+				image with updated kernel image
+
+	-r <ramdisk-image>	Optional argument. Use this to generate boot
+				image with updated ramdisk(initrd) image
+
+	-c <commandline>	Optional argument. Use this to generate boot
+				image with updated command line
+
+	-o			Optional argument. Use this to overwrite current
+				boot image. Otherwise a new boot image will be
+				created preserving old boot.img
+
+	-n <new-boot-img-name>	Optional argument. Use this to provide path and
+				name of new boot.img.
+
+Note:
+	1) If -n and -o options are missing then new file will be named as
+	   'updated-boot.img'
+	2) Don't use -o and -n together in same command
+
+
+To read command line from a boot image:
+--------------------------------------
+
+>> python boot-edit.py -b <boot-image>
+
+
+To change kernel from a boot image:
+-----------------------------------
+>> python boot-edit.py -b <boot-image> -k <kernel-image> -n <new-boot-img-name>
+
+
+To change ramdisk from a boot image:
+-----------------------------------
+>> python boot-edit.py -b <boot-image> -r <ramdisk-image> -n <new-boot-img-name>
+
+
+To change cmdline from a boot image:
+------------------------------------
+>> python boot-edit.py -b <boot-image> -c <cmdline> -n <new-boot-img-name>
